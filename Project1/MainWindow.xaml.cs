@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using FontAwesome.WPF;
@@ -18,6 +19,11 @@ namespace KMA.Group2.Project1
         {
             InitializeComponent();
             ShowSignInView();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            (_userListView.DataContext as UserListViewModel).StopThread();
         }
 
         private void ShowSignInView()
@@ -49,7 +55,7 @@ namespace KMA.Group2.Project1
 
             if (_userListView == null)
             {
-                _userListView = new UserListView();
+                _userListView = new UserListView(ShowLoader);
             }
             ShowView(_userListView);
         }

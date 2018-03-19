@@ -20,10 +20,10 @@ namespace KMA.Group2.Project1
     /// </summary>
     public partial class UserListView : UserControl
     {
-        public UserListView()
+        public UserListView(Action<bool> showLoaderAction)
         {
             InitializeComponent();
-            DataContext = new UserListViewModel();
+            DataContext = new UserListViewModel(showLoaderAction);
         }
     }
 }
